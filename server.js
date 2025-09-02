@@ -22,6 +22,15 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Backend is running 🚀',
+    routes: ['/api/auth/signup', '/api/auth/login', '/api/auth/me']
+  });
+});
+
+
 // Routes
 app.use('/api/auth', authRoutes);
 
