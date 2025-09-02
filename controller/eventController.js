@@ -92,7 +92,7 @@ const getEvent = async (req, res) => {
     // Check if user has access to this event
     const isCreator = event.creator._id.equals(req.user.userId);
     const isParticipant = event.participants.some(
-      (p) => p.user._id.toString() === req.user.userId
+      (p) => p.user._id.equals(req.user.userId)
     );
 
     if (!isCreator && !isParticipant) {
