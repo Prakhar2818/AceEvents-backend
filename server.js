@@ -6,6 +6,8 @@ const serverless = require("serverless-http"); // ✅ Add this
 
 const authRoutes = require("./routes/auth");
 
+const PORT = process.env.PORT || 5000
+
 dotenv.config();
 
 // Initialize Express app
