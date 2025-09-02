@@ -30,6 +30,34 @@ const validateLogin = [
     .withMessage('Password is required')
 ];
 
+const validateEvent = [
+  body('title')
+    .trim()
+    .notEmpty()
+    .withMessage('Event title is required')
+    .isLength({ max: 100 })
+    .withMessage('Title cannot exceed 100 characters'),
+  
+  body('description')
+    .trim()
+    .notEmpty()
+    .withMessage('Event description is required')
+    .isLength({ max: 500 })
+    .withMessage('Description cannot exceed 500 characters'),
+  
+  body('dateOptions')
+    .isArray({ min: 1 })
+    .withMessage('At least one date option is required'),
+  
+  body('dateOptions.*.date')
+    .isISO8601()
+    .withMessage('Invalid date format'),
+  
+  body('dateOptions.*.time')
+    .notEmpty()
+    .withMessage('Time is required for each date option')
+];
+
 // Validation result handler
 const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
@@ -46,5 +74,6 @@ const handleValidationErrors = (req, res, next) => {
 module.exports = {
   validateSignup,
   validateLogin,
-  handleValidationErrors
+  handleValidationErrors,
+  validateEvent
 };
