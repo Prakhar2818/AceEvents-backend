@@ -7,6 +7,7 @@ AceEvents is a backend API for managing collaborative events, invitations, and p
 - User registration and login (JWT authentication)
 - Create, update, delete events
 - Invite users to events
+- Notification on dashboard for events
 - Poll system for event decisions (single/multiple choice, close poll)
 - View poll results
 - MongoDB integration via Mongoose
