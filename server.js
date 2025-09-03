@@ -56,5 +56,4 @@ app.use("/*path", (req, res) => {
   });
 });
 
-module.exports = app;
 module.exports.handler = serverless(app);
