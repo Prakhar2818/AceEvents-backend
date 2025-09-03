@@ -56,11 +56,5 @@ app.use("/*path", (req, res) => {
   });
 });
 
-// ❌ Remove app.listen()
-// ✅ Instead export app & handler for Vercel
-// module.exports = app;
-// module.exports.handler = serverless(app);
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+module.exports = app;
+module.exports.handler = serverless(app);
