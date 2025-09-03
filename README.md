@@ -20,7 +20,6 @@ AceEvents is a backend API for managing collaborative events, invitations, and p
 .gitignore
 package.json
 server.js
-vercel.json
 config/
   database.js
 controller/
