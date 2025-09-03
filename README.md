@@ -163,30 +163,23 @@ Key decisions:
    - Challenge: Multiple users voting simultaneously caused data inconsistency
    - Solution: Implemented MongoDB transactions for atomic vote operations
 
-2. **Real-time Updates**
-   - Challenge: Keeping event data synchronized across users
-   - Solution: Implemented polling mechanism with plans to upgrade to WebSocket
-
-3. **Performance Optimization**
+2. **Performance Optimization**
    - Challenge: Slow queries with large datasets
    - Solution: 
      - Added database indexes
      - Implemented pagination
      - Optimized MongoDB queries
 
-4. **Security Concerns**
+3. **Security Concerns**
    - Challenge: Protecting against common web vulnerabilities
    - Solution:
-     - Added rate limiting
      - Implemented input validation
      - Set up CORS policies
      - Used helmet middleware
 
-5. **Deployment Issues**
+4. **Deployment Issues**
    - Challenge: Environment-specific configurations
    - Solution: 
-     - Implemented configuration management
-     - Created separate development/production configs
      - Added comprehensive error logging
 
 
