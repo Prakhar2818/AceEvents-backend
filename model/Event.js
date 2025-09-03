@@ -52,7 +52,7 @@ const eventSchema = new mongoose.Schema({
       default: Date.now
     }
   }],
-  // ✅ NEW: Enhanced Poll System
+  
   poll: {
     question: {
       type: String,

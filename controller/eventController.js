@@ -4,42 +4,10 @@ const User = require("../model/User");
 // @desc    Create a new event
 // @route   POST /api/events
 // @access  Private
-// const createEvent = async (req, res) => {
-//   try {
-//     const { title, description, dateOptions } = req.body;
-
-//     const event = new Event({
-//       title,
-//       description,
-//       creator: req.user.userId,
-//       dateOptions: dateOptions.map((option) => ({
-//         date: new Date(option.date),
-//         time: option.time,
-//         votes: [],
-//       })),
-//     });
-
-//     await event.save();
-//     await event.populate("creator", "username email");
-
-//     res.status(201).json({
-//       success: true,
-//       message: "Event created successfully",
-//       event,
-//     });
-//   } catch (error) {
-//     console.error("Create event error:", error);
-//     res.status(500).json({
-//       success: false,
-//       message: "Server error while creating event",
-//       error: process.env.NODE_ENV === "development" ? error.message : undefined,
-//     });
-//   }
-// };
 
 const createEvent = async (req, res) => {
   try {
-    const { title, description, dateOptions, poll } = req.body; // ✅ Added poll
+    const { title, description, dateOptions, poll } = req.body; 
 
     const event = new Event({
       title,
@@ -342,7 +310,6 @@ const voteOnPoll = async (req, res) => {
       userId: req.user.userId,
     });
 
-    // ✅ ADD VALIDATION FOR optionIndex
     if (optionIndex === undefined || optionIndex === null) {
       return res.status(400).json({
         success: false,
@@ -350,7 +317,6 @@ const voteOnPoll = async (req, res) => {
       });
     }
 
-    // ✅ ADD TYPE VALIDATION
     if (typeof optionIndex !== 'number' || !Number.isInteger(optionIndex)) {
       return res.status(400).json({
         success: false,
@@ -366,7 +332,6 @@ const voteOnPoll = async (req, res) => {
       });
     }
 
-    // ✅ ADD POLL VALIDATION
     if (!event.poll || !event.poll.options) {
       return res.status(400).json({
         success: false,
@@ -394,8 +359,6 @@ const voteOnPoll = async (req, res) => {
         message: "You are not authorized to vote on this poll",
       });
     }
-
-    // ✅ ENHANCED VALIDATION FOR OPTION INDEX
     if (optionIndex < 0 || optionIndex >= event.poll.options.length) {
       return res.status(400).json({
         success: false,
@@ -403,7 +366,6 @@ const voteOnPoll = async (req, res) => {
       });
     }
 
-    // ✅ ADDITIONAL SAFETY CHECK
     if (!event.poll.options[optionIndex]) {
       return res.status(400).json({
         success: false,

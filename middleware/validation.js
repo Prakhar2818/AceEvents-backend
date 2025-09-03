@@ -1,6 +1,5 @@
 const { body, validationResult } = require('express-validator');
 
-// Existing auth validations...
 const validateSignup = [
   body('username')
     .trim()
@@ -30,8 +29,6 @@ const validateLogin = [
     .withMessage('Password is required')
 ];
 
-// ✅ ENHANCED: Event validation with required poll
-// middleware/validation.js - Add poll validation
 const validateEvent = [
   body('title')
     .trim()
@@ -59,7 +56,6 @@ const validateEvent = [
     .notEmpty()
     .withMessage('Time is required for each date option'),
   
-  // ✅ ADD POLL VALIDATION
   body('poll.question')
     .trim()
     .notEmpty()
