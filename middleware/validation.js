@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 
-// User validation rules
+// Existing auth validations...
 const validateSignup = [
   body('username')
     .trim()
@@ -30,6 +30,8 @@ const validateLogin = [
     .withMessage('Password is required')
 ];
 
+// ✅ ENHANCED: Event validation with required poll
+// middleware/validation.js - Add poll validation
 const validateEvent = [
   body('title')
     .trim()
@@ -55,8 +57,28 @@ const validateEvent = [
   
   body('dateOptions.*.time')
     .notEmpty()
-    .withMessage('Time is required for each date option')
+    .withMessage('Time is required for each date option'),
+  
+  // ✅ ADD POLL VALIDATION
+  body('poll.question')
+    .trim()
+    .notEmpty()
+    .withMessage('Poll question is required')
+    .isLength({ max: 200 })
+    .withMessage('Poll question cannot exceed 200 characters'),
+  
+  body('poll.options')
+    .isArray({ min: 2 })
+    .withMessage('At least two poll options are required'),
+  
+  body('poll.options.*')
+    .trim()
+    .notEmpty()
+    .withMessage('Poll option cannot be empty')
+    .isLength({ max: 100 })
+    .withMessage('Poll option cannot exceed 100 characters')
 ];
+
 
 // Validation result handler
 const handleValidationErrors = (req, res, next) => {
@@ -74,6 +96,6 @@ const handleValidationErrors = (req, res, next) => {
 module.exports = {
   validateSignup,
   validateLogin,
-  handleValidationErrors,
-  validateEvent
+  validateEvent,
+  handleValidationErrors
 };

@@ -1,17 +1,20 @@
-const express = require('express');
+const express = require("express");
 const {
   validateEvent,
-  handleValidationErrors
-} = require('../middleware/validation');
-const auth = require('../middleware/auth');
+  handleValidationErrors,
+} = require("../middleware/validation");
+const auth = require("../middleware/auth");
 const {
   createEvent,
   getUserEvents,
   getEvent,
   updateEvent,
   deleteEvent,
-  inviteUser
-} = require('../controller/eventController');
+  inviteUser,
+  voteOnPoll,
+  getPollResults,
+  closePoll,
+} = require("../controller/eventController");
 
 const router = express.Router();
 
@@ -19,21 +22,25 @@ const router = express.Router();
 router.use(auth);
 
 // @route   GET /api/events
-router.get('/', getUserEvents);
+router.get("/", getUserEvents);
 
 // @route   POST /api/events
-router.post('/', validateEvent, handleValidationErrors, createEvent);
+router.post("/", validateEvent, handleValidationErrors, createEvent);
 
 // @route   GET /api/events/:id
-router.get('/:id', getEvent);
+router.get("/:id", getEvent);
 
 // @route   PUT /api/events/:id
-router.put('/:id', updateEvent);
+router.put("/:id", updateEvent);
 
 // @route   DELETE /api/events/:id
-router.delete('/:id', deleteEvent);
+router.delete("/:id", deleteEvent);
 
 // @route   POST /api/events/:id/invite
-router.post('/:id/invite', inviteUser);
+router.post("/:id/invite", inviteUser);
+
+router.post("/:id/vote", voteOnPoll);
+router.get("/:id/poll", getPollResults);
+router.post("/:id/poll/close", closePoll);
 
 module.exports = router;
