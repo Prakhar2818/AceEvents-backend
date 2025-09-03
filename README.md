@@ -13,6 +13,16 @@ AceEvents is a backend API for managing collaborative events, invitations, and p
 - Input validation and error handling
 - Ready for deployment on Vercel
 
+## 🛠 Tech Stack
+
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB (Atlas / local)  
+- **Authentication:** JWT (JSON Web Tokens)  
+- **Deployment:** Render  
+- **Validation & Middleware:** Express Validator, Custom Middleware  
+- **Other Tools:** Nodemon, dotenv, Mongoose
+
+
 ## Project Structure
 
 ```
@@ -55,7 +65,7 @@ Create a `.env` file:
 
 ```
 NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/aceevents
+MONGODB_URI= mongodb+srv://AceEvents:2818@cluster0.v4rfykz.mongodb.net/
 JWT_SECRET=your-super-secret-jwt-key
 PORT=5000
 ```
@@ -63,7 +73,7 @@ PORT=5000
 ### Running Locally
 
 ```sh
-node server.js
+nodemon server.js
 ```
 
 ### API Endpoints
@@ -88,7 +98,7 @@ node server.js
 
 ### Deployment
 
-Ready for [Vercel](vercel.com) deployment. See [`vercel.json`](vercel.json) for configuration.
+Ready for [Render](https://aceevents-backend.onrender.com) deployment.
 
 ---
 
