@@ -97,6 +97,9 @@ nodemon server.js
 - `GET /api/event/:id/poll` — Poll results
 - `POST /api/event/:id/poll/close` — Close poll
 
+### Repository Link
+Github Repo link [Github](https://github.com/Prakhar2818/AceEvents-backend)
+
 ### Deployment
 
 Ready for [Render](https://aceevents-backend.onrender.com) deployment.
